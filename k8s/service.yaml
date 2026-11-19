@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: punitxd-express-hello-world
+  namespace: kairo-punitxd-express-hello-world
+  labels:
+    app: punitxd-express-hello-world
+    app.kubernetes.io/managed-by: kairo
+spec:
+  # cluster-internal only: all outside traffic comes in through Traefik's
+  # Ingress, so request metrics are always counted
+  type: ClusterIP
+  selector:
+    app: punitxd-express-hello-world
+  ports:
+    - name: http
+      port: 80
+      targetPort: 3000
